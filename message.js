@@ -13,7 +13,7 @@
  * message.post ...
  * message.receive ...
  */
- 
+
 /*
  * ender postMessage - v0.1.3 - 5/1/2012
  * by Thomas Sturm http://www.sturm.to
@@ -103,7 +103,7 @@
 		  // of the target to target_url#message. A bit ugly, but it works! A cache
 		  // bust parameter is added to ensure that repeat messages trigger the
 		  // callback.
-		  target.location = target_url.replace( /#.*$/, '' ) + '#' + (+new Date) + (cache_bust++) + '&' + message;
+		  target.location = target_url.replace( /#.*$/, '' ) + '#' + (+new Date) + (cache_bust++) + '&' + encodeURIComponent(message);
 		}
 	  };
 
@@ -206,7 +206,7 @@
 				} else {
 					document.location.hash = '';
 				}
-				callback({ data: hash.replace( re, '' ) });
+				callback({ data: decodeURIComponent(hash.replace( re, '' )) });
 			  }
 			}, delay );
 		  }
